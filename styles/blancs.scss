@@ -1,0 +1,116 @@
+@import "colors";
+@import "mixins";
+
+body {
+  background: black;
+}
+
+.body {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.container {
+  @include align-center;
+  height: 99vh;
+}
+
+.header {
+  @include div-cave-vin;
+  height: 15vh;
+  background: $blanc-main-color;
+}
+
+.body {
+  margin: auto;
+  width: 100%;
+  height: 75vh;
+  display: inline-block;
+  background: $blanc-second-color;
+  overflow: scroll;
+}
+
+.footer {
+  @include div-cave-vin;
+  height: 10vh;
+  background: $blanc-third-color;
+}
+
+.button {
+  @include index-buttons;
+}
+
+.listeVins {
+  font-size: small;
+}
+
+.spanBlancs1 {
+  font-size: small;
+  font-weight: bold;
+}
+
+.spanBlancs2 {
+  font-size: xx-small;
+}
+
+.boutonsPlusMoins {
+  ;
+}
+
+@media(min-width: 767px){
+
+  .container {
+    @include align-center;
+    height: 99vh;
+  }
+
+  .header {
+    @include div-cave-vin;
+    height: 19vh;
+    background: $blanc-main-color;
+  }
+
+  .body {
+    @include div-cave-vin;
+    height: 61vh;
+    background: $blanc-second-color;
+  }
+
+  .footer {
+    @include div-cave-vin;
+    height: 19vh;
+    background: $blanc-third-color;
+  }
+
+  .listeVins {
+    @include bodyVin;
+    overflow: scroll;
+    font-size: large;
+  }
+
+  .ajouterElement {
+    @include bodyVin;
+    overflow: scroll;
+  }
+
+  .button {
+    @include index-buttons;
+  }
+
+  .formulaire {
+    appearance: textfield;
+  }
+
+  .spanBlancs1 {
+    font-size: large;
+  }
+
+  .spanBlancs2 {
+    font-size: small;
+  }
+
+  .enregistrerBoutton {
+
+  }
+}

@@ -1,0 +1,59 @@
+@import "colors";
+@import "mixins";
+
+body {
+  background: black;
+}
+
+.container {
+  @include align-center;
+  height: 99vh;
+}
+
+.header {
+  @include div-cave-vin;
+  height: 19vh;
+  background: $blanc-main-color;
+}
+
+.body {
+  @include div-cave-vin;
+  height: 61vh;
+  background: $blanc-second-color;
+}
+
+.footer {
+  @include div-cave-vin;
+  height: 19vh;
+  background: $blanc-third-color;
+}
+
+.listeVins {
+  @include bodyVin;
+  overflow: scroll;
+}
+
+.ajouterElement {
+  @include bodyVin;
+  overflow: scroll;
+}
+
+.button {
+  @include index-buttons;
+}
+
+.formulaire {
+  appearance: textfield;
+}
+
+.spanBlancs1 {
+;
+}
+
+.spanBlancs2 {
+  font-size: small;
+}
+
+.enregistrerBoutton {
+
+}

@@ -1,0 +1,30 @@
+@import "colors";
+@import "mixins";
+
+body {
+  background: black;
+}
+
+.container {
+  @include align-center;
+  height: 99vh;
+}
+
+.header {
+  background: $header-color;
+  @include div-cave-vin;
+}
+
+.body {
+  background: $body-color;
+  @include div-cave-vin;
+}
+
+.footer {
+  background: $footer-color;
+  @include div-cave-vin;
+}
+
+.button {
+  @include index-buttons;
+}

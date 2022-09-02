@@ -1,0 +1,46 @@
+body {
+  background: black;
+}
+
+.container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 99vh;
+}
+
+.header {
+  background: #FAEBD7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33vh;
+}
+
+.body {
+  background: #CD5C5C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33vh;
+}
+
+.footer {
+  background: #800000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33vh;
+}
+
+.button {
+  height: 10vh;
+  weight: 25vh;
+  font-size: x-large;
+  border-radius: 25%;
+  background: #8B4513;
+  color: #FFF5EE;
+}
+
+/*# sourceMappingURL=index.css.map */

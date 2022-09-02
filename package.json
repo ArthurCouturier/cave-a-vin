@@ -1,0 +1,19 @@
+{
+  "name": "cave-a-vin",
+  "version": "1.0.0",
+  "description": "gestion locale de cave a vin",
+  "main": "backgrounds/gestion.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "coutcout",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-xml-bodyparser": "^0.3.0",
+    "freebox-sdk-js": "^0.7.4",
+    "fs": "^0.0.1-security",
+    "sass": "^1.54.2",
+    "scss": "^0.2.4"
+  }
+}

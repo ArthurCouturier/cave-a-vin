@@ -1,0 +1,32 @@
+@mixin flexMid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin align-center {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@mixin div-cave-vin {
+  @include flexMid;
+  height: 33vh;
+}
+
+@mixin index-buttons {
+  height: 10vh;
+  weight: 25vh;
+  font-size: x-large;
+  border-radius: 25%;
+  background: $button-back;
+  color: $button-font;
+}
+
+@mixin bodyVin {
+  @include flexMid;
+  height: 50vh;
+  width: 45%;
+}
