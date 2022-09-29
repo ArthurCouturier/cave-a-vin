@@ -84,15 +84,98 @@ app.get('/enregistrerCepageBlanc', (req, res, next) => {
 // Route permettant d'enregistrer une nouvelle commande de blanc
 app.get('/enregistrerCommandeBlanc', (req, res, next) => {
     res.set('Content-Type', 'text/html');
-    var newCepage = req.query.cepage;
-    var newDomaine = req.query.domaine;
-    var newQuantite = req.query.quantite;
-    var vinsBlancsJSON = fs.readFileSync('./ressources/blancs.json');
-    var vinsBlancs = JSON.parse(vinsBlancsJSON);
-    cepage = vinsBlancs.Cepage[newCepage];
+    const newCepage = req.query.cepage;
+    const newDomaine = req.query.domaine;
+    const newQuantite = req.query.quantite;
+    let vinsBlancsJSON = fs.readFileSync('./ressources/blancs.json');
+    const vinsBlancs = JSON.parse(vinsBlancsJSON);
+    let cepage = vinsBlancs.Cepage[newCepage];
     cepage[newDomaine] = parseInt(newQuantite);
     vinsBlancsJSON = JSON.stringify(vinsBlancs);
     fs.writeFileSync('./ressources/blancs.json', vinsBlancsJSON);
+    next();
+})
+
+
+
+
+
+// ROSES
+
+function getVinsRoses() {
+    require('./ressources/roses.json');
+    const vinsRosesJSON = fs.readFileSync('./ressources/roses.json');
+    const vinsRoses = JSON.parse(vinsRosesJSON);
+    return vinsRoses;
+}
+
+// Route pour obtenir la liste des vins roses
+app.get('/roses', (req, res, next) => {
+    res.set('Content-Type', 'text/html');
+    console.log(access);
+    res.json(getVinsRoses());
+    next();
+});
+
+// Route permettant d'ajouter une quantité d'un vin rose pré-enregistré
+app.get('/ajouterRose', (req, res, next) => {
+    res.set('Content-Type', 'text/html');
+    var cepage =  req.query.cepage;
+    var domaine = req.query.domaine;
+    var vinsRosesJSON = fs.readFileSync('./ressources/roses.json');
+    var vinsRoses = JSON.parse(vinsRosesJSON);
+    vinsRoses.Cepage[cepage][domaine] += 1;
+    vinsRosesJSON = JSON.stringify(vinsRoses);
+    fs.writeFileSync('./ressources/roses.json', vinsRosesJSON);
+    res.json(getVinsRoses());
+    next();
+})
+
+// Route permettant de retirer une quantité d'un vin rose pré-enregistré
+app.get('/retirerRose', (req, res, next) => {
+    res.set('Content-Type', 'text/html');
+    var cepage =  req.query.cepage;
+    var domaine = req.query.domaine;
+    var vinsRosesJSON = fs.readFileSync('./ressources/roses.json');
+    var vinsRoses = JSON.parse(vinsRosesJSON);
+    vinsRoses.Cepage[cepage][domaine] -= 1;
+    vinsRosesJSON = JSON.stringify(vinsRoses);
+    fs.writeFileSync('./ressources/roses.json', vinsRosesJSON);
+    res.json(getVinsRoses());
+    next();
+})
+
+// Route permettant d'enrigistrer un nouveau cépage
+app.get('/enregistrerCepageRose', (req, res, next) => {
+    res.set('Content-Type', 'text/html');
+    var nomNouveauCepage = req.query.cepage;
+    var vinsRosesJSON = fs.readFileSync('./ressources/roses.json');
+    var vinsRoses = JSON.parse(vinsRosesJSON);
+    var cepages = vinsRoses.Cepage;
+    for (var c in cepages) {
+        if (c == nomNouveauCepage) {
+            //res.json(getVinsRoses());
+            next();
+        }
+    }
+    cepages[nomNouveauCepage] = {};
+    vinsRosesJSON = JSON.stringify(vinsRoses);
+    fs.writeFileSync('./ressources/roses.json', vinsRosesJSON);
+    next();
+})
+
+// Route permettant d'enregistrer une nouvelle commande de rouge
+app.get('/enregistrerCommandeRose', (req, res, next) => {
+    res.set('Content-Type', 'text/html');
+    const newCepage = req.query.cepage;
+    const newDomaine = req.query.domaine;
+    const newQuantite = req.query.quantite;
+    let vinsRosesJSON = fs.readFileSync('./ressources/roses.json');
+    const vinsRoses = JSON.parse(vinsRosesJSON);
+    let cepage = vinsRoses.Cepage[newCepage];
+    cepage[newDomaine] = parseInt(newQuantite);
+    vinsRosesJSON = JSON.stringify(vinsRoses);
+    fs.writeFileSync('./ressources/roses.json', vinsRosesJSON);
     next();
 })
 
@@ -167,12 +250,12 @@ app.get('/enregistrerCepageRouge', (req, res, next) => {
 // Route permettant d'enregistrer une nouvelle commande de rouge
 app.get('/enregistrerCommandeRouge', (req, res, next) => {
     res.set('Content-Type', 'text/html');
-    var newCepage = req.query.cepage;
-    var newDomaine = req.query.domaine;
-    var newQuantite = req.query.quantite;
-    var vinsRougesJSON = fs.readFileSync('./ressources/rouges.json');
-    var vinsRouges = JSON.parse(vinsRougesJSON);
-    cepage = vinsRouges.Cepage[newCepage];
+    const newCepage = req.query.cepage;
+    const newDomaine = req.query.domaine;
+    const newQuantite = req.query.quantite;
+    let vinsRougesJSON = fs.readFileSync('./ressources/rouges.json');
+    const vinsRouges = JSON.parse(vinsRougesJSON);
+    let cepage = vinsRouges.Cepage[newCepage];
     cepage[newDomaine] = parseInt(newQuantite);
     vinsRougesJSON = JSON.stringify(vinsRouges);
     fs.writeFileSync('./ressources/rouges.json', vinsRougesJSON);

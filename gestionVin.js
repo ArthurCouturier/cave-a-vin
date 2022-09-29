@@ -1,4 +1,4 @@
-const URL = "192.168.1.12";
+const URL = "192.168.1.16";
 
 async function chargerListeVins(type) {
     const xhttp = new XMLHttpRequest();
@@ -46,6 +46,8 @@ function retirerVin(cepage, domaine, type) {
     };
     if (type == 'blancs') {
         xhttp.open('GET', 'http://'+URL+':3000/retirerBlanc?cepage='+cepage+'&domaine='+domaine);
+    } else if (type == 'roses') {
+        xhttp.open('GET', 'http://'+URL+':3000/retirerRose?cepage='+cepage+'&domaine='+domaine);
     } else if (type == 'rouges') {
         xhttp.open('GET', 'http://'+URL+':3000/retirerRouge?cepage='+cepage+'&domaine='+domaine);
     }
@@ -65,6 +67,8 @@ function ajouterVin(cepage, domaine, type) {
     };
     if (type == 'blancs') {
         xhttp.open('GET', 'http://'+URL+':3000/ajouterBlanc?cepage='+cepage+'&domaine='+domaine);
+    } else if (type == 'roses') {
+        xhttp.open('GET', 'http://'+URL+':3000/ajouterRose?cepage='+cepage+'&domaine='+domaine);
     } else if (type == 'rouges') {
         xhttp.open('GET', 'http://'+URL+':3000/ajouterRouge?cepage='+cepage+'&domaine='+domaine);
     }
@@ -73,7 +77,7 @@ function ajouterVin(cepage, domaine, type) {
     return;
 }
 
-async function enregistrerNouvelleCommande(type) {
+function enregistrerNouvelleCommande() {
     if (document.getElementById("nouveauVinDomaine").value != "") {
         if (document.getElementById("nouveauVinQuantite").value == "") {
             document.getElementById("nouveauVinQuantite").value = 0;
@@ -87,13 +91,16 @@ async function enregistrerNouvelleCommande(type) {
                 location.reload();
             }
         };
-        var cepage = document.getElementById("choixCepages").value;
-        var domaine = document.getElementById("nouveauVinDomaine").value;
-        var quantite = document.getElementById("nouveauVinQuantite").value;
+        const cepage = document.getElementById("choixCepages").value;
+        const domaine = document.getElementById("nouveauVinDomaine").value;
+        const quantite = document.getElementById("nouveauVinQuantite").value;
+        console.log(cepage, domaine, quantite);
         if (type ==  'blancs') {
             xhttp.open('GET', 'http://'+URL+':3000/enregistrerCommandeBlanc?cepage='+cepage+"&domaine="+domaine+"&quantite="+quantite);
         } else if (type == 'rouges') {
             xhttp.open('GET', 'http://'+URL+':3000/enregistrerCommandeRouge?cepage='+cepage+"&domaine="+domaine+"&quantite="+quantite);
+        } else if (type == 'roses') {
+            xhttp.open('GET', 'http://'+URL+':3000/enregistrerCommandeRose?cepage='+cepage+"&domaine="+domaine+"&quantite="+quantite);
         }
         xhttp.setRequestHeader('Content-Type', 'application/javascript');
         xhttp.send();
@@ -101,7 +108,7 @@ async function enregistrerNouvelleCommande(type) {
     }
 }
 
-async function enregistrerNouveauCepage(type) {
+function enregistrerNouveauCepage() {
     if (document.getElementById("nomNouveauCepage").value != "") {
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
@@ -116,9 +123,16 @@ async function enregistrerNouveauCepage(type) {
             xhttp.open('GET', 'http://'+URL+':3000/enregistrerCepageBlanc?cepage='+document.getElementById("nomNouveauCepage").value);
         } else if (type == 'rouges') {
             xhttp.open('GET', 'http://'+URL+':3000/enregistrerCepageRouge?cepage='+document.getElementById("nomNouveauCepage").value);
+        } else if (type == 'roses') {
+            xhttp.open('GET', 'http://'+URL+':3000/enregistrerCepageRose?cepage='+document.getElementById("nomNouveauCepage").value);
         }
         xhttp.setRequestHeader('Content-Type', 'application/javascript');
         xhttp.send();
         return;
     }
 }
+
+var bouttonNewCommande = document.getElementById("enregistrerNouvelleCommandeBouton");
+bouttonNewCommande.addEventListener("click", enregistrerNouvelleCommande);
+var bouttonNewCepage = document.getElementById("enregistrerNouveauCepageBouton");
+bouttonNewCepage.addEventListener("click", enregistrerNouveauCepage);

@@ -21,11 +21,11 @@
                 <!-- Liste des cépages gérée dans gestionVin.js dans afficherListeVins -->
                 <input placeholder="Nom de domaine" class="formulaire" id="nouveauVinDomaine"> <br>
                 <input placeholder="Quantité achetée" class="formulaire" id="nouveauVinQuantite"> <br>
-                <input type="button" class="enregistrerBoutton" id="enregistrerNouvelleCommande" value="Enregistrer">
+                <input type="button" class="enregistrerBoutton" id="enregistrerNouvelleCommandeBouton" value="Enregistrer">
             <br> <br>
                 <span class="spanBlancs1">Enregistrer un nouveau cépage: </span> <br>
                 <input placeholder="Nom du nouveau cépage" id="nomNouveauCepage"> <br>
-                <input type="button" class="enregistrerBoutton" id="enregistrerNouveauCepage" value="Enregistrer">
+                <input type="button" class="enregistrerBoutton" id="enregistrerNouveauCepageBouton" value="Enregistrer">
             </form>
         </div>
     </div>
@@ -34,13 +34,12 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/cave-a-vin/gestionVin.js">
-    var bouttonNewCommande = document.getElementById("enregistrerNouvelleCommande");
-    bouttonNewCommande.addEventListener("click", enregistrerNouvelleCommande('blancs'));
-    var bouttonNewCepage = document.getElementById("enregistrerNouveauCepage");
-    bouttonNewCepage.addEventListener("click", enregistrerNouveauCepage('blancs'));</script>
 <script>
     const type = 'blancs';
+</script>
+<script type="text/javascript" src="/cave-a-vin/gestionVin.js">
+</script>
+<script>
     chargerListeVins(type);
 </script>
 </body>

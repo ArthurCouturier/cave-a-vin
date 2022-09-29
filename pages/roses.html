@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cave À Rosés</title>
+    <link rel="stylesheet" href="/cave-a-vin/styles/roses.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <button class="button" onclick="location.href = '/cave-a-vin/index.html'">Retour au menu des vins</button>
+    </div>
+    <div class="body">
+        <div class="listeVins" id="listeVins">La liste des vins ne charge pas</div>
+        <!-- Liste des vins gérée dans gestionVin.js dans afficherListeVins -->
+        <div class="ajouterElement">
+            <form>
+                <span class="spanRoses1">Enregistrer un nouveau vin: </span> <br>
+                <span class="spanRoses2">Cepage: </span><select id="choixCepages"></select> <br>
+                <!-- Liste des cépages gérée dans gestionVin.js dans afficherListeVins -->
+                <input placeholder="Nom de domaine" class="formulaire" id="nouveauVinDomaine"> <br>
+                <input placeholder="Quantité achetée" class="formulaire" id="nouveauVinQuantite"> <br>
+                <input type="button" class="enregistrerBoutton" id="enregistrerNouvelleCommandeBouton" value="Enregistrer">
+                <br> <br>
+                <span class="spanRoses1">Enregistrer un nouveau cépage: </span> <br>
+                <input placeholder="Nom du nouveau cépage" id="nomNouveauCepage"> <br>
+                <input type="button" class="enregistrerBoutton" id="enregistrerNouveauCepageBouton" value="Enregistrer">
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        Codé par CoutCout
+    </div>
+</div>
+
+<script>
+    const type = 'roses';
+</script>
+<script type="text/javascript" src="/cave-a-vin/gestionVin.js">
+</script>
+<script>
+    chargerListeVins(type);
+    console.log("log roses.html", type);
+</script>
+</body>
+</html>
