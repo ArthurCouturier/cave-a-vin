@@ -1,0 +1,136 @@
+body {
+  background: black;
+}
+
+.body {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 99vh;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33vh;
+  height: 15vh;
+  background: #7a212f;
+}
+
+.body {
+  margin: auto;
+  width: 100%;
+  height: 75vh;
+  display: inline-block;
+  background: #9c303d;
+  overflow: scroll;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33vh;
+  height: 10vh;
+  background: #d74a51;
+}
+
+.button {
+  height: 10vh;
+  weight: 25vh;
+  font-size: x-large;
+  border-radius: 25%;
+  background: #8B4513;
+  color: #FFF5EE;
+}
+
+.listeVins {
+  font-size: small;
+}
+
+.spanBlancs1 {
+  font-size: small;
+  font-weight: bold;
+}
+
+.spanBlancs2 {
+  font-size: xx-small;
+}
+
+@media (min-width: 767px) {
+  .container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 99vh;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33vh;
+    height: 19vh;
+    background: #7a212f;
+  }
+  .body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33vh;
+    height: 61vh;
+    background: #9c303d;
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33vh;
+    height: 19vh;
+    background: #d74a51;
+  }
+  .listeVins {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 45%;
+    overflow: scroll;
+    font-size: large;
+  }
+  .ajouterElement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 45%;
+    overflow: scroll;
+  }
+  .button {
+    height: 10vh;
+    weight: 25vh;
+    font-size: x-large;
+    border-radius: 25%;
+    background: #8B4513;
+    color: #FFF5EE;
+  }
+  .formulaire {
+    appearance: textfield;
+  }
+  .spanBlancs1 {
+    font-size: large;
+  }
+  .spanBlancs2 {
+    font-size: small;
+  }
+}
+
+/*# sourceMappingURL=rouges.css.map */

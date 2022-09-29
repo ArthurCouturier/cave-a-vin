@@ -1,19 +1,21 @@
-async function chargerListeVins() {
+const URL = "192.168.1.12";
+
+async function chargerListeVins(type) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
     };
     xhttp.onreadystatechange = function() { // Donner le callback
         if (this.readyState == 4 && this.status == 200) {
-            afficherListeVins(this.responseText);
+            afficherListeVins(this.responseText, type);
         }
     };
-    xhttp.open('GET', 'http://localhost:3000/blancs');
+    xhttp.open('GET', 'http://'+URL+':3000/'+type);
     xhttp.setRequestHeader('Content-Type', 'application/javascript');
     xhttp.send();
     return;
 }
 
-async function afficherListeVins(listeJSON) {
+async function afficherListeVins(listeJSON, type) {
     document.getElementById("listeVins").innerHTML = "";
     var liste = JSON.parse(listeJSON);
     var listeVinsHTML = "<ul>";
@@ -22,8 +24,8 @@ async function afficherListeVins(listeJSON) {
         listeVinsHTML += "<b>" + cepage + ": " + "</b>" + "<ul>";
         cepagesHTML += "<option value='"+cepage.toString()+"'>"+cepage.toString()+"</option>";
         for (var domaine in liste.Cepage[cepage]) {
-            boutonMoins = " <input class='boutonsPlusMoins' type='button' value='-' onclick='retirerVin(\""+cepage+"\", \""+domaine+"\")'>"
-            boutonPlus = "<input class='boutonsPlusMoins' type='button' value='+' onclick='ajouterVin(\""+cepage+"\", \""+domaine+"\")'>"
+            boutonMoins = " <input class='boutonsPlusMoins' type='button' value='-' onclick='retirerVin(\""+cepage+"\", \""+domaine+"\", \""+type+"\")'>"
+            boutonPlus = "<input class='boutonsPlusMoins' type='button' value='+' onclick='ajouterVin(\""+cepage+"\", \""+domaine+"\", \""+type+"\")'>"
             listeVinsHTML += "<li>" + domaine + ": " + liste.Cepage[cepage][domaine] + boutonMoins + boutonPlus + "</li>";
         }
         listeVinsHTML += "</ul>";
@@ -33,37 +35,45 @@ async function afficherListeVins(listeJSON) {
     document.getElementById("listeVins").innerHTML = listeVinsHTML;
 }
 
-function retirerVin(cepage, domaine) {
+function retirerVin(cepage, domaine, type) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
     };
     xhttp.onreadystatechange = function() { // Donner le callback
         if (this.readyState == 4 && this.status == 200) {
-            afficherListeVins(this.responseText);
+            afficherListeVins(this.responseText, type);
         }
     };
-    xhttp.open('GET', 'http://localhost:3000/retirerBlanc?cepage='+cepage+'&domaine='+domaine);
+    if (type == 'blancs') {
+        xhttp.open('GET', 'http://'+URL+':3000/retirerBlanc?cepage='+cepage+'&domaine='+domaine);
+    } else if (type == 'rouges') {
+        xhttp.open('GET', 'http://'+URL+':3000/retirerRouge?cepage='+cepage+'&domaine='+domaine);
+    }
     xhttp.setRequestHeader('Content-Type', 'application/javascript');
     xhttp.send();
     return;
 }
 
-function ajouterVin(cepage, domaine) {
+function ajouterVin(cepage, domaine, type) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
     };
     xhttp.onreadystatechange = function() { // Donner le callback
         if (this.readyState == 4 && this.status == 200) {
-            afficherListeVins(this.responseText);
+            afficherListeVins(this.responseText, type);
         }
     };
-    xhttp.open('GET', 'http://localhost:3000/ajouterBlanc?cepage='+cepage+'&domaine='+domaine);
+    if (type == 'blancs') {
+        xhttp.open('GET', 'http://'+URL+':3000/ajouterBlanc?cepage='+cepage+'&domaine='+domaine);
+    } else if (type == 'rouges') {
+        xhttp.open('GET', 'http://'+URL+':3000/ajouterRouge?cepage='+cepage+'&domaine='+domaine);
+    }
     xhttp.setRequestHeader('Content-Type', 'application/javascript');
     xhttp.send();
     return;
 }
 
-async function enregistrerNouvelleCommande() {
+async function enregistrerNouvelleCommande(type) {
     if (document.getElementById("nouveauVinDomaine").value != "") {
         if (document.getElementById("nouveauVinQuantite").value == "") {
             document.getElementById("nouveauVinQuantite").value = 0;
@@ -73,41 +83,42 @@ async function enregistrerNouvelleCommande() {
         };
         xhttp.onreadystatechange = function() { // Donner le callback
             if (this.readyState == 4 && this.status == 200) {
-                chargerListeVins();
+                chargerListeVins(type);
                 location.reload();
             }
         };
         var cepage = document.getElementById("choixCepages").value;
         var domaine = document.getElementById("nouveauVinDomaine").value;
         var quantite = document.getElementById("nouveauVinQuantite").value;
-        xhttp.open('GET', 'http://localhost:3000/enregistrerCommandeBlanc?cepage='+cepage+"&domaine="+domaine+"&quantite="+quantite);
+        if (type ==  'blancs') {
+            xhttp.open('GET', 'http://'+URL+':3000/enregistrerCommandeBlanc?cepage='+cepage+"&domaine="+domaine+"&quantite="+quantite);
+        } else if (type == 'rouges') {
+            xhttp.open('GET', 'http://'+URL+':3000/enregistrerCommandeRouge?cepage='+cepage+"&domaine="+domaine+"&quantite="+quantite);
+        }
         xhttp.setRequestHeader('Content-Type', 'application/javascript');
         xhttp.send();
         return;
     }
 }
 
-var bouttonNewCommande = document.getElementById("enregistrerNouvelleCommande");
-bouttonNewCommande.addEventListener("click", enregistrerNouvelleCommande);
-
-async function enregistrerNouveauCepage() {
+async function enregistrerNouveauCepage(type) {
     if (document.getElementById("nomNouveauCepage").value != "") {
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
         };
         xhttp.onreadystatechange = function() { // Donner le callback
             if (this.readyState == 4 && this.status == 200) {
-                chargerListeVins();
+                chargerListeVins(type);
                 location.reload();
             }
         };
-        xhttp.open('GET', 'http://localhost:3000/enregistrerCepageBlanc?cepage='+document.getElementById("nomNouveauCepage").value);
+        if (type == 'blancs') {
+            xhttp.open('GET', 'http://'+URL+':3000/enregistrerCepageBlanc?cepage='+document.getElementById("nomNouveauCepage").value);
+        } else if (type == 'rouges') {
+            xhttp.open('GET', 'http://'+URL+':3000/enregistrerCepageRouge?cepage='+document.getElementById("nomNouveauCepage").value);
+        }
         xhttp.setRequestHeader('Content-Type', 'application/javascript');
         xhttp.send();
         return;
     }
 }
-
-var bouttonNewCepage = document.getElementById("enregistrerNouveauCepage");
-bouttonNewCepage.addEventListener("click", enregistrerNouveauCepage);
-
