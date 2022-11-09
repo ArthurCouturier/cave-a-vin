@@ -1,4 +1,4 @@
-const URL = "192.168.1.16";
+const URL = "191.96.53.174";
 
 async function chargerListeVins(type) {
     const xhttp = new XMLHttpRequest();
