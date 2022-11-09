@@ -6,6 +6,7 @@ const app = express();
 // Sur la livebox: https://communaute.orange.fr/t5/Trucs-et-astuces/Comment-définir-une-quot-IP-fixe-quot-sur-le-réseau-local-d-une/ta-p/634804
 const PORT = process.env.PORT || 3000;
 const {access} = require("fs");
+const path = require("path");
 
 
 
@@ -261,6 +262,48 @@ app.get('/enregistrerCommandeRouge', (req, res, next) => {
     fs.writeFileSync('./ressources/rouges.json', vinsRougesJSON);
     next();
 })
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, '/index.html'));
+});
+app.get('/index.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/index.html'));
+});
+app.get('/cave-a-vin/index.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/index.html'));
+});
+app.get('/pages/blancs.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/pages/blancs.html'));
+});
+app.get('/pages/roses.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/pages/roses.html'));
+});
+app.get('/pages/rouges.html', function(req, res) {
+    res.sendFile(path.join(__dirname, '/pages/rouges.html'));
+});
+
+
+// Routes CSS
+
+app.get('/styles/index.css', function(req, res) {
+    res.sendFile(path.join(__dirname, '/styles/index.css'));
+});
+app.get('/cave-a-vin/styles/blancs.css', function(req, res) {
+    res.sendFile(path.join(__dirname, '/styles/blancs.css'));
+});
+app.get('/cave-a-vin/styles/roses.css', function(req, res) {
+    res.sendFile(path.join(__dirname, '/styles/roses.css'));
+});
+app.get('/cave-a-vin/styles/rouges.css', function(req, res) {
+    res.sendFile(path.join(__dirname, '/styles/rouges.css'));
+});
+
+
+// Routes JS
+
+app.get('/cave-a-vin/gestionVin.js', function(req, res) {
+    res.sendFile(path.join(__dirname, './gestionVin.js'));
+});
 
 // Ecoute
 app.listen(PORT, console.log("Server cave start for port: " + PORT));
