@@ -4,7 +4,7 @@ const fs = require("fs");
 const app = express();
 // changer le serveur express pour mettre sur freebox: https://www.npmjs.com/package/freebox-sdk-js
 // Sur la livebox: https://communaute.orange.fr/t5/Trucs-et-astuces/Comment-définir-une-quot-IP-fixe-quot-sur-le-réseau-local-d-une/ta-p/634804
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 const {access} = require("fs");
 const path = require("path");
 
