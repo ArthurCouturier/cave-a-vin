@@ -28,7 +28,7 @@ function getVinsBlancs() {
 }
 
 // Route pour obtenir la liste des vins blancs
-app.get('/blancs', (req, res, next) => {
+app.get('/cave-a-vin/blancs', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     console.log(access);
     res.json(getVinsBlancs());
@@ -36,7 +36,7 @@ app.get('/blancs', (req, res, next) => {
 });
 
 // Route permettant d'ajouter une quantité d'un vin blanc pré-enregistré
-app.get('/ajouterBlanc', (req, res, next) => {
+app.get('/cave-a-vin/ajouterBlanc', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var cepage =  req.query.cepage;
     var domaine = req.query.domaine;
@@ -50,7 +50,7 @@ app.get('/ajouterBlanc', (req, res, next) => {
 })
 
 // Route permettant de retirer une quantité d'un vin blanc pré-enregistré
-app.get('/retirerBlanc', (req, res, next) => {
+app.get('/cave-a-vin/retirerBlanc', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var cepage =  req.query.cepage;
     var domaine = req.query.domaine;
@@ -64,7 +64,7 @@ app.get('/retirerBlanc', (req, res, next) => {
 })
 
 // Route permettant d'enrigistrer un nouveau cépage
-app.get('/enregistrerCepageBlanc', (req, res, next) => {
+app.get('/cave-a-vin/enregistrerCepageBlanc', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var nomNouveauCepage = req.query.cepage;
     var vinsBlancsJSON = fs.readFileSync('./ressources/blancs.json');
@@ -83,7 +83,7 @@ app.get('/enregistrerCepageBlanc', (req, res, next) => {
 })
 
 // Route permettant d'enregistrer une nouvelle commande de blanc
-app.get('/enregistrerCommandeBlanc', (req, res, next) => {
+app.get('/cave-a-vin/enregistrerCommandeBlanc', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     const newCepage = req.query.cepage;
     const newDomaine = req.query.domaine;
@@ -111,7 +111,7 @@ function getVinsRoses() {
 }
 
 // Route pour obtenir la liste des vins roses
-app.get('/roses', (req, res, next) => {
+app.get('/cave-a-vin/roses', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     console.log(access);
     res.json(getVinsRoses());
@@ -119,7 +119,7 @@ app.get('/roses', (req, res, next) => {
 });
 
 // Route permettant d'ajouter une quantité d'un vin rose pré-enregistré
-app.get('/ajouterRose', (req, res, next) => {
+app.get('/cave-a-vin/ajouterRose', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var cepage =  req.query.cepage;
     var domaine = req.query.domaine;
@@ -133,7 +133,7 @@ app.get('/ajouterRose', (req, res, next) => {
 })
 
 // Route permettant de retirer une quantité d'un vin rose pré-enregistré
-app.get('/retirerRose', (req, res, next) => {
+app.get('/cave-a-vin/retirerRose', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var cepage =  req.query.cepage;
     var domaine = req.query.domaine;
@@ -147,7 +147,7 @@ app.get('/retirerRose', (req, res, next) => {
 })
 
 // Route permettant d'enrigistrer un nouveau cépage
-app.get('/enregistrerCepageRose', (req, res, next) => {
+app.get('/cave-a-vin/enregistrerCepageRose', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var nomNouveauCepage = req.query.cepage;
     var vinsRosesJSON = fs.readFileSync('./ressources/roses.json');
@@ -166,7 +166,7 @@ app.get('/enregistrerCepageRose', (req, res, next) => {
 })
 
 // Route permettant d'enregistrer une nouvelle commande de rouge
-app.get('/enregistrerCommandeRose', (req, res, next) => {
+app.get('/cave-a-vin/enregistrerCommandeRose', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     const newCepage = req.query.cepage;
     const newDomaine = req.query.domaine;
@@ -194,7 +194,7 @@ function getVinsRouges() {
 }
 
 // Route pour obtenir la liste des vins rouges
-app.get('/rouges', (req, res, next) => {
+app.get('/cave-a-vin/rouges', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     console.log(access);
     res.json(getVinsRouges());
@@ -202,7 +202,7 @@ app.get('/rouges', (req, res, next) => {
 });
 
 // Route permettant d'ajouter une quantité d'un vin rouge pré-enregistré
-app.get('/ajouterRouges', (req, res, next) => {
+app.get('/cave-a-vin/ajouterRouges', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var cepage =  req.query.cepage;
     var domaine = req.query.domaine;
@@ -216,7 +216,7 @@ app.get('/ajouterRouges', (req, res, next) => {
 })
 
 // Route permettant de retirer une quantité d'un vin rouge pré-enregistré
-app.get('/retirerRouge', (req, res, next) => {
+app.get('/cave-a-vin/retirerRouge', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var cepage =  req.query.cepage;
     var domaine = req.query.domaine;
@@ -230,7 +230,7 @@ app.get('/retirerRouge', (req, res, next) => {
 })
 
 // Route permettant d'enrigistrer un nouveau cépage
-app.get('/enregistrerCepageRouge', (req, res, next) => {
+app.get('/cave-a-vin/enregistrerCepageRouge', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     var nomNouveauCepage = req.query.cepage;
     var vinsRougesJSON = fs.readFileSync('./ressources/rouges.json');
@@ -249,7 +249,7 @@ app.get('/enregistrerCepageRouge', (req, res, next) => {
 })
 
 // Route permettant d'enregistrer une nouvelle commande de rouge
-app.get('/enregistrerCommandeRouge', (req, res, next) => {
+app.get('/cave-a-vin/enregistrerCommandeRouge', (req, res, next) => {
     res.set('Content-Type', 'text/html');
     const newCepage = req.query.cepage;
     const newDomaine = req.query.domaine;
