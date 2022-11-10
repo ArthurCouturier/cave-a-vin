@@ -1,4 +1,4 @@
-const URL = "localhost";
+const URL = "http://191.96.53.174";
 
 async function chargerListeVins(type) {
     const xhttp = new XMLHttpRequest();
